@@ -38,7 +38,7 @@ switch (resultFromServer.weather[0].main) {
     break;
 
   case 'Thunderstorm':
-      document.body.style.backgroundImage = 'url("xyz (2).jpg")';
+      document.body.style.backgroundImage = 'url("storm.jpg")';
       break;
 
   case 'Snow':

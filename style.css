@@ -1,7 +1,9 @@
 body {
+  overflow-x: hidden;
+  overflow-y: hidden;
+  height: 100%;
+  width: 100%;
   background-image: url('xyz (2).jpg');
-  margin: 0;
-  padding: 0;
   background-image: cover;
   background-repeat: no-repeat;
   background-position: center center;
