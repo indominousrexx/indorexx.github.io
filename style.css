@@ -14,7 +14,11 @@ body {
   font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
 
 }
-
+.col-12 {
+  align-content: center;
+  align-items: center;
+  align-self: center;
+}
 #weatherContainer {
 
   background-color: rgba(0, 0, 0, 0.25);
@@ -32,20 +36,20 @@ body {
 }
 #searchContainer {
   padding: 15px;
-  position: absolute;
-  top: 20px;
-  left: 25px;
+  position: relative;
+  top: 5%;
+  left: 15%;
   align-items: center;
   align-content: center;
 }
 #searchContainer input {
-  width: 300px;
-  height: 25px;
+  width: 230px;
+  height: 35px;
   font-size: larger;
 }
 #searchContainer button {
   background-color: rgba(1, 159,198, 0.95);
-  width: 105px;
+  width: 95px;
   height: 35px;
   font-size: larger;
 }
