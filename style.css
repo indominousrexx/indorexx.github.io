@@ -6,8 +6,8 @@ body {
   padding-top: 0;
   padding-bottom: 0;
   background-image: url('xyz (2).jpg');
-  background-image: cover;
-  background-repeat: no-repeat;
+  background-image: fill;
+  background-repeat: repeat-y;
   background-position: center center;
   color: #fff;
   text-shadow: 2px 2px 1px #000;
