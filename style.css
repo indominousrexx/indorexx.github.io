@@ -1,142 +1,78 @@
-*, *::after, *::before {
-  box-sizing: border-box;
-}
-:root {
-  --cell-size: 125px;
-  --mark-size: calc(var(--cell-size) * .8);
-}
-
-
 body {
+  background-image: url('xyz (2).jpg');
   margin: 0;
-}
-.board {
-    width: 100vw;
-    height: 100vh;
-    display: grid;
-    justify-content: center;
-    align-content: center;
-    justify-items: center;
-    align-items: center;
-    grid-template-columns: repeat(3, auto);
-  }
-.cell {
-width: var(--cell-size);
-height: var(--cell-size);
-border: 1px solid rgb(0, 0, 0);
-display: flex;
-justify-content: center;
-align-items: center;
-cursor: pointer;
+  padding: 0;
+  background-image: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  color: #fff;
+  text-shadow: 2px 2px 1px #000;
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
 
 }
-.cell:first-child,
-.cell:nth-child(2),
-.cell:nth-child(3) {
-  border-top: none;
-} 
-.cell:nth-child(3n + 1) {
-  border-left: none;
-}
-.cell:nth-child(3n + 3) {
-  border-right: none;
-}
-.cell:last-child,
-.cell:nth-child(8),
-.cell:nth-child(7) {
-  border-bottom: none;
-}
-.cell.x,
-.cell.circle {
-  cursor: not-allowed;
-}
-.cell.x::before,
-.cell.x::after,
-.cell.circle::before
- {
-  background-color: rgb(0, 0, 0);
-}
-.board.x .cell:not(.x):not(.circle):hover::before,
-.board.x .cell:not(.x):not(.circle):hover::after,
-.board.x .cell:not(.x):not(.circle):hover::before {
-  background-color: lightgrey;
-}
 
+#weatherContainer {
+  background-color: rgba(0, 0, 0, 0.25);
+  box-shadow: 1px 1px 5px #000;
+  padding: 50px;
+  border-radius: 12px;
+  position: absolute;
+  visibility: hidden;
 
-
-.cell.x::before,
-.cell.x::after,
-.board.x .cell:not(.x):not(.circle):hover::before,
-.board.x .cell:not(.x):not(.circle):hover::after {
-    content: '';
-    position: absolute;
-    width: calc(var(--mark-size) * .15);
-    height: var(--mark-size);
-   
 }
-.cell.x::before,
-.board.x .cell:not(.x):not(.circle):hover::before {
-  transform: rotate(45deg);
+#weatherContainer h1 {
+  margin: 5px;
+  font-size: 42px;
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
 }
-.cell.x::after,
-.board.x .cell:not(.x):not(.circle):hover::after {
-  transform: rotate(-45deg);
-}
-
-
-.cell.circle::before,
-.cell.circle::after,
-.board.x .cell:not(.x):not(.circle):hover::before,
-.board.x .cell:not(.x):not(.circle):hover::after
- {
-    content: '';
-    position: absolute;
-    border-radius: 50%;
-    
-}
-.cell.circle::before,
-.board.x .cell:not(.x):not(.circle):hover::before {
-  width: var(--mark-size);
-    height: var(--mark-size);
-   
-}
-
-.cell.circle::after,
-.board.x .cell:not(.x):not(.circle):hover::after {
-  width: calc(var(--mark-size) * .7);
-  height: calc(var(--mark-size) * .7);
-  background-color: rgb(255, 255, 255);
-}
-
-
-.winning-message {
-  display: none;
-  position: fixed;
+#searchContainer {
+  padding: 15px;
+  position: absolute;
   top: 0;
-  left: 0;
   right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, .9);
-  justify-content: center;
-  align-items: center;
-  color: white;
-  font-size: 5rem;
-  flex-direction: column;
 }
+#searchContainer input {
+  width: 200px;
+}
+#searchContainer button {
+  background-color: rgba(1, 159,198, 0.95);
+  width: 75px;
+}
+#a {
+  box-shadow: 2px 2px 5px;
+  border: none;
+  border-radius: 5px;
+  padding: 5px;
+  
+}
+#searchInput {
+  box-shadow: 2px 2px 5px;
+  border: none;
+  border-radius: 5px;
+  padding: 5px;
+  outline: none;
+}
+#weatherMain {
+  display: block;
+  margin-bottom: 20px;
+}
+#weatherMain div {
+  display: inline-block;
+}
+#weatherDescriptionHeader {
+  font-size: 28px;
+  vertical-align: 50%;
 
-.winning-message button {
-  font-size: 3rem;
-  background-color: white;
-  border: 1px solid black;
-  padding: .25em 0.5em;
-  cursor: pointer;
 }
-.winning-message button:hover {
-  background-color: black;
-  color: rgb(255, 255, 255);
-  border-color: rgb(255, 255, 255);
+#temperature {
+    font-size: 38px;
+    vertical-align: 25%;
 }
-
-.winning-message.show {
-  display: flex;
+.bottomDetails {
+  display: block;
+  font-size: 24px;
+  text-align: right;
+}
+hr {
+  margin-bottom: 20px;
 }

@@ -1,89 +1,85 @@
-const X_CLASS = 'x'
-const CIRCLE_CLASS = 'circle'
-const WINNING_COMBINATIONS = [
-  [0, 1, 2],
-  [3, 4, 5],
-  [6, 7, 8],
-  [0, 3, 6],
-  [1, 4, 7],
-  [2, 5, 8],
-  [0, 4, 8],
-  [2, 4, 6]
-]
-const cellElements = document.querySelectorAll('[data-cell]')
-const board = document.getElementById('board')
-const winningMessageElement = document.getElementById('winningMessage')
-const restartButton = document.getElementById('restartButton')
-const winningMessageTextElement = document.querySelector('[data-winning-message-text]')
-let circleTurn
+let appId = '45c21512d5f5e7e8f9742e1d1e405e76';
+let units = 'metric';
+let searchMethod;
+function getSearchMethod(searchTerm) {
+  if(searchTerm.length === 5 && Number.parseInt(searchTerm) + '' === searchTerm)
+     searchMethod = 'zip';
+  else
+     searchMethod = 'q';   
+}
 
-startGame()
-
-restartButton.addEventListener('click', startGame)
-
-function startGame() {
-  circleTurn = false
-  cellElements.forEach(cell => {
-    cell.classList.remove(X_CLASS)
-    cell.classList.remove(CIRCLE_CLASS)
-    cell.removeEventListener('click', handleClick)
-    cell.addEventListener('click', handleClick, { once: true })
+function searchWeather(searchTerm) {
+  getSearchMethod(searchTerm);
+  fetch(`http://api.openweathermap.org/data/2.5/weather?${searchMethod}=${searchTerm}&APPID=${appId}&units=${units}`).then (result => {
+      return result.json();
+  }).then(result => {
+      init(result);
   })
-  setBoardHoverClass()
-  winningMessageElement.classList.remove('show')
+
 }
 
-function handleClick(e) {
-  const cell = e.target
-  const currentClass = circleTurn ? CIRCLE_CLASS : X_CLASS
-  placeMark(cell, currentClass)
-  if (checkWin(currentClass)) {
-    endGame(false)
-  } else if (isDraw()) {
-    endGame(true)
-  } else {
-    swapTurns()
-    setBoardHoverClass()
+function init(resultFromServer) {
+switch (resultFromServer.weather[0].main) {
+  case 'Clear':
+      document.body.style.backgroundImage = 'url("clear.jpg")';
+      break;
+  case 'Clouds':
+      document.body.style.backgroundImage = 'url("cloud.jpg")';
+      break;
+
+  case 'Rain':
+  case 'Drizzle':
+  case 'Mist':
+      document.body.style.backgroundImage = 'url("road-landscape-nature-forest-39811 (1).jpg")';
+      break;
+  case 'Haze':
+  case 'smoke':
+    document.body.style.backgroundImage = 'url("haze.jpg")';
+    break;
+
+  case 'Thunderstorm':
+      document.body.style.backgroundImage = 'url("xyz (2).jpg")';
+      break;
+
+  case 'Snow':
+      document.body.style.backgroundImage = 'url("snow.jpg")';
+      break;
+     
+  default:
+    break;    
   }
+
+  let weatherDescriptionHeader = document.getElementById('weatherDescriptionHeader');
+  let temperatureElement = document.getElementById('temperature');
+  let humidityElement = document.getElementById('humidity');
+  let windSpeedElement = document.getElementById('windSpeed');
+  let cityHeader = document.getElementById('cityHeader');
+  
+
+let resultDescription = resultFromServer.weather[0].description;
+weatherDescriptionHeader.innerText = resultDescription.charAt(0).toUpperCase() + resultDescription.slice(1);
+
+temperatureElement.innerHTML = Math.floor(resultFromServer.main.temp) + '&#176';
+windSpeedElement.innerHTML = 'Winds at ' + Math.floor(resultFromServer.wind.speed) + ' m/s';
+cityHeader.innerHTML = resultFromServer.name;
+humidityElement.innerHTML = 'Humidity levels at ' + resultFromServer.main.humidity + ' %';
+
+setPositionForWeatherInfo();
+
 }
 
-function endGame(draw) {
-  if (draw) {
-    winningMessageTextElement.innerText = 'Draw!'
-  } else {
-    winningMessageTextElement.innerText = `${circleTurn ? "O's" : "X's"} Wins!`
-  }
-  winningMessageElement.classList.add('show')
+function setPositionForWeatherInfo() {
+   let weatherContainer = document.getElementById('weatherContainer');
+   let weatherContainerHeight = weatherContainer.clientHeight;
+   let weatherContainerWidth = weatherContainer.clientWidth;
+
+   weatherContainer.style.left = `calc(50% - ${weatherContainerWidth/1.95}px)`;
+   weatherContainer.style.top = `calc(50% - ${weatherContainerWidth/2}px)`;
+   weatherContainer.style.visibility = 'visible';
 }
 
-function isDraw() {
-  return [...cellElements].every(cell => {
-    return cell.classList.contains(X_CLASS) || cell.classList.contains(CIRCLE_CLASS)
-  })
-}
-
-function placeMark(cell, currentClass) {
-  cell.classList.add(currentClass)
-}
-
-function swapTurns() {
-  circleTurn = !circleTurn
-}
-
-function setBoardHoverClass() {
-  board.classList.remove(X_CLASS)
-  board.classList.remove(CIRCLE_CLASS)
-  if (circleTurn) {
-    board.classList.add(CIRCLE_CLASS)
-  } else {
-    board.classList.add(X_CLASS)
-  }
-}
-
-function checkWin(currentClass) {
-  return WINNING_COMBINATIONS.some(combination => {
-    return combination.every(index => {
-      return cellElements[index].classList.contains(currentClass)
-    })
-  })
-}
+var search = document.getElementById('a');
+search.addEventListener('click', () => {let searchTerm = document.getElementById('searchInput').value;
+  if(searchTerm)
+    searchWeather(searchTerm);
+})
