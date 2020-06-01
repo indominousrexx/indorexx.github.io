@@ -73,8 +73,8 @@ function setPositionForWeatherInfo() {
    let weatherContainerHeight = weatherContainer.clientHeight;
    let weatherContainerWidth = weatherContainer.clientWidth;
 
-   weatherContainer.style.left = `calc(50% - ${weatherContainerWidth/1.95}px)`;
-   weatherContainer.style.top = `calc(50% - ${weatherContainerWidth/2}px)`;
+   weatherContainer.style.left = `calc(50% - ${weatherContainerWidth/1.7}px)`;
+   weatherContainer.style.top = `calc(50% - ${weatherContainerWidth/1.9}px)`;
    weatherContainer.style.visibility = 'visible';
 }
 
