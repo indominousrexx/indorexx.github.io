@@ -1,13 +1,13 @@
 body {
   overflow-x: hidden;
   overflow-y: hidden;
-  height: 100vh;
-  width: auto;
+  height: 120vh;
+  width: 100%;
   padding-top: 0;
   padding-bottom: 0;
   background-image: url('xyz (2).jpg');
   background-image: cover;
-  background-repeat:  none;
+  background-repeat:  no-repeat;
   margin: 0;
   background-position: center center;
   color: #fff;
@@ -16,6 +16,10 @@ body {
 
 }
 @media (max-width: 992px) {
+  body {
+    width: 992px;
+    height: 100vh;
+  }
 #searchInput {
     font-size: 4em;
     padding: 2rem;
@@ -29,6 +33,10 @@ body {
 }
 
 @media (max-width: 768px) {
+  body {
+    width: 768px;
+    height: 100vh;
+  }
   #searchInput {
     font-size: 2.5em;
     padding: 1.2rem;
@@ -55,6 +63,11 @@ body {
 }
 
 @media (max-width: 576px) {
+
+  body {
+    width: 576px;
+    height: 100vh;
+  }
   #searchInput {
     font-size: 2em;
     padding: 0.7rem;
@@ -100,8 +113,7 @@ body {
   padding: 15px;
   position: relative;
   top: 10%;
-  
-  right: -5%;
+  right: -35%;
   align-self: center;
   align-items: center;
   align-content: center;
