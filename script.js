@@ -73,8 +73,14 @@ function setPositionForWeatherInfo() {
    let weatherContainerHeight = weatherContainer.clientHeight;
    let weatherContainerWidth = weatherContainer.clientWidth;
 
-   weatherContainer.style.left = `calc(50% - ${weatherContainerWidth/1.7}px)`;
-   weatherContainer.style.top = `calc(50% - ${weatherContainerWidth/1.9}px)`;
+   //let searchContainer = document.getElementById('searchContainer');
+   //let searchContainer = searchContainer.clientHeight;
+   //let searchContainer = searchContainer.clientWidth;
+
+   weatherContainer.style.left = `calc(50% - ${weatherContainerWidth/1.9}px)`;
+   weatherContainer.style.top = `calc(50% - ${weatherContainerWidth/1.5}px)`;
+   //searchContainer.style.left = `calc(50% - ${searchContainerWidth/1.9}px)`;
+   //searchContainer.style.top = `calc(50% - ${searchContainerWidth/1}px)`;
    weatherContainer.style.visibility = 'visible';
 }
 
